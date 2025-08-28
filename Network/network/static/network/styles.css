@@ -1,0 +1,61 @@
+@keyframes move {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes follow {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 46%;
+    }
+}
+
+@keyframes h2 {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 40%;
+    }
+}
+
+h2 {
+    position: relative;
+    animation-name: h2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+h1 {
+    position: relative;
+    animation-name: move;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+h3 {
+    position: relative;
+    animation-name: follow;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.posts {
+
+    border: solid;
+    border-color: black;
+    padding: 20px;
+    margin: 10px;
+
+
+
+}
+
+
+

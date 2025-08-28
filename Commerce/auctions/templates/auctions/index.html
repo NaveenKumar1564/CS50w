@@ -1,0 +1,57 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+
+        <h2>Active Listings</h2>
+
+    <div class="col-md-12">
+        <!-- <div class="row"> -->
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+    
+    
+         
+                {% for auction in auctions %}
+    
+               
+                    <div class="col-md-4">
+        
+                        <a href="{%url 'Listing' auction.id %}" >   
+                            
+            
+                        <div class="card col-md-12">
+                            <div class="row" style="color: black;">
+                                <!-- <img class="card-img-top" src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"> -->
+                                <img class="card-img-top" src="{{auction.Image}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{auction.Title}}</h5>
+                                    <!-- <h5 class="card-title">Owner: {{auction.creator}}</h5> -->
+                                    <!-- <ul class="list-group list-group-flush"> -->
+                                        <p class="card-text">Price: ${{auction.Price}}</p>
+                                        <p class="card-text">{{ auction.Description}}</p> 
+<!-- 
+                                        <li class="list-group-item">Price: {{auction.Price}}</li>
+                                        <li class="list-group-item">{{auction.Description}}</li>li> -->
+                                        
+                                    <!-- </ul> -->
+                                    <!-- <p class="card-text">{{ auction.Description}}</p> -->
+                                </div>
+                            </div>
+            
+                    
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+       
+        
+                
+        </div>
+    </div>
+   
+    <div class="card">
+        {% for auction in auction%}
+        <li>{{auction}}</li>
+        {% endfor %}
+    </div>
+{% endblock %}

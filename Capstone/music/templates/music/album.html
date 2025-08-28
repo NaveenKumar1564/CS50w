@@ -1,0 +1,34 @@
+{% extends "music/layout.html" %}
+
+
+
+{% block body%}
+
+<h1 class="heading">Albums</h1>
+
+
+<!-- <div class="wrapper"> -->
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+  {% for album in Albums %}
+    <a href="{% url 'show' album.0 %}">
+      <div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+         <!-- <img src="https://static.vecteezy.com/system/resources/previews/003/292/616/non_2x/dark-orange-background-with-music-symbols-vector.jpg" style="width:300px; height: 400px;"> -->
+         <img src="https://i.pinimg.com/originals/13/a4/80/13a480ee9cdf59836080e2a9f800c869.jpg" style="width:300px; height: 400px;">
+         <div class="centered"><h3>{{album.1}}</h3></div>
+      </div>
+    </a>
+   {% endfor %}
+</div>
+
+
+
+
+
+{% endblock%}
+
+
+
+
+
+
+                           

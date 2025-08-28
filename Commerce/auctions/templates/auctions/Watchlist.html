@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+            {% for auction in auctions %}
+                {% for watchlists in watchlist %}
+                    {% if watchlists.listing == auction %}
+        
+                    <div class="col-md-4">
+                    
+                        <a href="{%url 'Listing' auction.id %}" >   
+                            
+            
+                        <div class="card col-md-12" >
+                            <div class="row">
+                                <img class="card-img-top" src="{{auction.Image}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{auction.Title}}</h5>
+                                    <h5 class="card-title">{{auction.creator}}</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Price: {{auction.Price}}</li>
+                                    </ul>
+                                    <p class="card-text">{{ auction.Description}}</p>
+                                </div>
+                            </div>
+            
+                    
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

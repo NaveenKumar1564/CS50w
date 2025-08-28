@@ -1,0 +1,106 @@
+{% extends "auctions/layout.html" %}
+
+{% block body%}
+
+
+
+
+<h1>{{listing.Title}}</h1>
+
+
+
+
+<div class="container border p-2 m-2">
+    <div class="row">
+        <div class="col">
+            <img src="{{ listing.Image }}" alt="image" style="width: 500px; height: auto">
+        </div>
+        <div class="col text-left">
+            <h2 class="display-4">{{ listing.Title }}</h2>
+            <h4>Price: ${{ listing.Price }}</h4>
+            <p><small>{{ listing.Description }}</small></p>
+            <p> Owner: {{listing.creator}}</p>
+            <p>Category: {{listing.Category}}</p>
+            {% if watchlist != 0 %}
+
+            <a class="btn btn-primary" href="{%url 'removewatchlist' listing.id %}">Remove from WatchList</a>
+        
+            {% endif %}
+        
+            {% if watchlist == 0 %}
+          
+                <a class="btn btn-primary" href="{%url 'addwatchlist' listing.id %}">Add to WatchList   </a>
+        
+            {% endif %}
+            <br/>
+            <p>{{highest}}</p>
+            {% if listing.closed == True %}
+                <label > Bidding is closed and the winner is {{listing.buyer.username}} </label>
+                <p>
+                    <strong>{{listing.Current_Bid.user.username}}</strong>
+                    {{listing.Current_Bid.bid}}
+                </p>
+            {% endif %}
+            <h4>Overall Bids</h4>
+            {% for bid in Bid %}
+                {% if bid.Auction == listing %}
+                <p><strong>{{ bid.user.username }}</strong> ~ ${{ bid.bid }} </p>
+                {% endif %}
+
+            {% endfor %}
+            
+            {% if listing.closed == False and request.user != listing.creator %}
+            <form action="{% url 'Listing' listing.id %}" method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="bid">{{ listing.Current_Bid.count }} bid(s) so far</label>
+                </div>
+                <div class="form-group">
+                  <input type="number" name="price" class="form-control" placeholder="Place bid"/>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Place Bid </button>
+                 
+                </div>
+        
+            </form>
+            <p class="text-danger">{{ message }}</p>
+            {% endif %}
+            {% if listing.closed == False and listing.creator == request.user  %}
+            <form action="{% url 'CloseBid' listing.id %}" method="GET">
+                <div class="form-group">
+                    <label for="bid">{{ request.user }}  You Can Close the bids</label>
+                </div>
+
+                <div class="form-group">
+                    
+                    <button type="submit"  class="btn btn-primary" >Close Bids</button>
+                </div>
+        
+            </form>
+            {% endif %}
+
+           
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <h3>Comments</h3>
+        {% for comment in listing.comments.all %}
+          <div class="container m3-5 p-2 border" >
+            <p><strong>{{ comment.user.username }}</strong></p>
+            <p class="mt-n2">{{ comment.comment }}</p>
+            <p class="mt-n3"><small>{{ comment.time }}</small></p>
+          </div>
+        {% endfor %}
+    </div>
+    <form method="POST" action="{% url 'AddComments' listing.id %}">
+        {% csrf_token %}
+        <input name="comment" placeholder="Comment" style="height: 140px; width: 637px;">
+        <button type="submit">Submit Comment </button>
+    </form>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{% if edit%}
+ Editing the page: {{title}}
+{% else %}
+Create New Page
+{% endif %}
+{% endblock %}
+
+
+
+{% block body %}
+{% if edit%}
+<h1> Editing {{title}}</h1>
+{% else %}
+<h1> New Page</h1>
+{% endif %}
+
+{% if Already_Exits %}
+<div>
+    <h1>Sorry entry alreday exists with this title, you another title or you can edit the following title down below</h1>
+</div>
+{% endif%}
+<div class="form-group">
+<form action="{%url 'Create'%}" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit">
+</form>
+</div>
+
+
+
+{% endblock %}

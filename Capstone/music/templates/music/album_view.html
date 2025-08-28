@@ -1,0 +1,39 @@
+{% extends "music/layout.html" %}
+
+{% load static %}
+
+{% block body%}
+
+<h1 class="heading">{{album}}</h1>
+
+
+{% for song in songs%}
+<div class="songs">
+    <a href="{% url 'song' song.id %}">
+    <p><h4 class="title">{{song.Title}}</h4> <small>by {{song.Singer}}</small></p>
+    </a>
+    <audio controls>
+        <source src="{{ song.Audio.url }}" type="audio/mpeg">
+    </audio>
+    
+    <p id="like-count -{{song.id}}" style="color: white;">Likes :{{song.liked_by.count}}</p>
+
+
+    {% if user.is_authenticated %} 
+    <div id="unlike-view-{{song.id}}" style="display: {% if user in song.liked_by.all %} block {% else %} none {% endif %}">
+        <button value="Unlike" onclick="like_song({{song.id}})" class="likeunlike" id="unlike-{{song.id}}"><i class="bi bi-heart-fill" style="color: red;"></i></button>
+    </div>
+
+
+    <div id="like-view-{{song.id}}" style="display: {% if user in song.liked_by.all %} none {% else %} block {% endif %}">
+        <!-- <button value="like" onclick="like_song({{song.id}})" class="likeunlike" id="like-{{song.id}}"><img src="https://i.pinimg.com/736x/49/76/07/497607972058be389e30087c75ba40dd--clip-art-scribble.jpg" alt="like" height="20" width="15"></button> -->
+        <button value="like" onclick="like_song({{song.id}})" class="likeunlike" id="like-{{song.id}}"><i class="bi bi-heart-fill" style="color: white;"></i></button>
+    </div>
+
+    {% endif %}
+
+</div>
+{% endfor %}
+
+    
+{% endblock%}

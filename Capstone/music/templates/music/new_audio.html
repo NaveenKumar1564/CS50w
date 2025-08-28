@@ -1,0 +1,15 @@
+{% extends "music/layout.html" %}
+
+{% block body%}
+
+<h1 class="heading">Upload New Songs</h1>
+<form method="POST" class="create" action="{% url 'create' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+ 
+    <input type="submit" value="Upload" value=save id="upload">
+
+</form>
+
+
+{% endblock%}

@@ -1,0 +1,90 @@
+@keyframes move {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+
+
+
+
+
+
+.songs {
+
+    border: solid;
+    border-color: transparent;
+    padding: 20px;
+    margin: 10px;
+    background-color: #242424;
+
+
+
+}
+
+body{
+    background-color: #1b1b1b;
+}
+
+.heading{
+    position: relative;
+    animation-name: move;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
+h2, small, .nav-link, label {
+    color: white;
+}
+
+.title{
+    color: rgb(63, 230, 63);
+}
+
+button{
+    border: none;
+    background-color: #242424;
+}
+
+#upload{
+    background-color: rgb(63, 230, 63);
+    border: none;
+}
+
+.al{
+    color: rgb(63, 230, 63);
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+}
+
+
+
+.container {
+    position: relative;
+    color: rgb(63, 230, 63);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 20px;
+
+      }
+
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 35%;
+    left: 40%;
+   
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+  }

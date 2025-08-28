@@ -1,0 +1,30 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+
+
+{% if request.user == post.creator%}
+
+<h1>Edit Post</h1>
+<form method="POST" class="create" action="{% url 'edit' post.id %}">
+    {% csrf_token %}
+  
+    {{form}}
+ 
+    <input type="submit" value="save">
+
+</form>
+
+
+
+
+{% else %}
+
+<h1>You cant edit other's post</h1> 
+
+{% endif %} 
+{% endblock %}
+
+
+
+
